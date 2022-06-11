@@ -1,8 +1,8 @@
-export {majCircleOfFifths};
+export { circleOfFifths };
 
 /********       CIRCLE OF FIFTHS FOR MAJOR KEYS     ***********/
 
-function majCircleOfFifths(svgElement, keys, intervals, colors) {
+function circleOfFifths(svgElement, keys, intervals, colors) {
     let bbox = { width: 700, height: 700 };
     let current_key = 0;
     
