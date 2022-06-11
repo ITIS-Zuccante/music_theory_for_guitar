@@ -5,7 +5,7 @@ let minorKeys = [
     { root: 'G', notes: ['G', 'D', 'A', 'E', 'B', 'F#', 'Db', 'Ab', 'Eb', 'Bb', 'F', 'C'] },
     { root: 'D', notes: ['D', 'A', 'E', 'B', 'F#', 'C#', 'Ab', 'Eb', 'Bb', 'F', 'C', 'G'] },
     { root: 'A', notes: ['A', 'E', 'B', 'F#', 'C#', 'G#', 'Eb', 'Bb', 'F', 'C', 'G', 'D'] },
-    { root: 'E', notes: ['E', 'B', 'F#', 'C#', 'G#', 'D#', 'Bb', 'F', 'C', 'G', 'D', 'A'] },
+    { root: 'E', notes: ['E', 'B', 'Gb', 'C#', 'G#', 'D#', 'Bb', 'F', 'C', 'G', 'D', 'A'] },
     { root: 'B', notes: ['B', 'F#', 'C#', 'G#', 'D#', 'A#', 'F', 'C', 'G', 'D', 'A', 'E'] },
     { root: 'F#', notes: ['F#', 'C#', 'Ab', 'Eb', 'Bb', 'F', 'C', 'G', 'D', 'A', 'E', 'B'] },
     { root: 'C#', notes: ['C#', 'G#', 'Eb', 'Bb', 'F', 'C', 'G', 'D', 'A', 'E', 'B', 'Gb'] },
