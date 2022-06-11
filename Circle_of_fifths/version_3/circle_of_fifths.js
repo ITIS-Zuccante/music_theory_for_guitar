@@ -93,11 +93,13 @@ function circleOfFifths(svgElement, keys, intervals, colors) {
             circle.setAttribute("stroke-width", "2");
             circle.setAttribute("fill", pos.color);
             svgElement.appendChild(circle);
-            let text = document.createElementNS(svgNamespace, 'text');
-            text.setAttribute("x", pos.cx);
-            text.setAttribute("y", pos.cy);
-            text.innerHTML = keys[current_key].notes[i];
-            svgElement.appendChild(text);
+            if (pos.interval != null) {
+                let text = document.createElementNS(svgNamespace, 'text');
+                text.setAttribute("x", pos.cx);
+                text.setAttribute("y", pos.cy);
+                text.innerHTML = keys[current_key].notes[i];
+                svgElement.appendChild(text);
+            }
             if (pos.interval != null && pos.interval != '1') {
                 let cp_distance = (5 / 2) * circle_of_notes.little_circle_radius;// * diff;
                 let start = `${circle_of_notes.elements[0].ax},${circle_of_notes.elements[0].ay}`;
@@ -112,7 +114,7 @@ function circleOfFifths(svgElement, keys, intervals, colors) {
                 path.setAttribute("fill", "transparent");
                 path.setAttribute("stroke-width", "1px");
                 svgElement.appendChild(path);
-                text = document.createElementNS(svgNamespace, 'text');
+                let text = document.createElementNS(svgNamespace, 'text');
                 text.setAttribute("x", circle_of_labels.cx + circle_of_labels.radius * Math.cos(pos.angle));
                 text.setAttribute("y", circle_of_labels.cy + circle_of_labels.radius * Math.sin(pos.angle));
                 text.innerHTML = pos.interval;
