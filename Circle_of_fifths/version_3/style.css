@@ -1,0 +1,140 @@
+
+/*
+keys are in the outer hexagon
+degrees are in the middle hexagon. Degrees are the components of scales
+notes are in the inner hexagon. Notes are the components of chords
+*/
+ellipse:hover {
+    stroke-width: 2;
+}
+
+/************* NOTES *****************/
+
+.visible-note-link path {
+    fill: rgb(255, 255, 255);
+    stroke: rgb(0, 0, 0);
+}
+
+.visible-note ellipse {
+    stroke-width: 1;
+    stroke: rgb(0, 0, 0);
+    fill: rgb(255 255 255);
+}
+
+.visible-note text {
+    stroke-width: 1;
+    stroke: rgb(0, 0, 0);
+    fill: rgb(51 51 51);
+    font-family: Arial, sans-serif;
+    white-space: pre;
+    font-size: 11px;
+}
+
+.visible-note-link text {
+    stroke-width: 1;
+    stroke: rgb(0, 0, 0);
+    fill: rgb(51 51 51);
+    font-family: Arial, sans-serif;
+    white-space: pre;
+    font-size: 11px;
+}
+
+.invisible-note ellipse {
+    visibility: hidden;
+}
+
+.invisible-note text {
+    visibility: hidden;
+}
+
+.invisible-note path {
+    visibility: hidden;
+}
+
+/************* DEGREES *****************/
+
+.invisible-degree {
+    visibility: hidden;
+}
+
+.unselected-degree text {
+    stroke-width: 1;
+    stroke: rgb(0, 0, 0);
+    fill: rgb(51 51 51);
+    font-family: Arial, sans-serif;
+    white-space: pre;
+    font-size: 16px;
+}
+
+.unselected-degree ellipse {
+    stroke-width: 1;
+    stroke: rgb(0, 0, 0);
+    fill: rgb(255 255 255);
+}
+
+.selected-degree text {
+    stroke-width: 1;
+    stroke: rgb(0, 0, 0);
+    fill: rgb(51 51 51);
+    font-family: Arial, sans-serif;
+    white-space: pre;
+    font-size: 16px;
+}
+
+.selected-degree ellipse {
+    stroke-width: 2;
+    stroke: rgb(0, 0, 0);
+    fill: rgb(247 231 33);
+}
+
+.unselected-degree ellipse {
+    stroke-width: 1;
+    stroke: rgb(0, 0, 0);
+    fill: rgb(255 255 255);
+}
+
+.unselected-degree text {
+    stroke-width: 1;
+    stroke: rgb(0, 0, 0);
+    fill: rgb(51 51 51);
+    font-family: Arial, sans-serif;
+    white-space: pre;
+    font-size: 16px;
+}
+
+.unselected-degree path {
+    fill: rgb(255, 255, 255);
+    stroke: rgb(0, 0, 0);
+}
+
+/************* KEYS *****************/
+
+.selected-key ellipse:hover {
+    stroke-width: 2;
+    stroke: rgb(0, 0, 0);
+    fill: rgb(247 231 33);
+}
+
+.selected-key text {
+    stroke-width: 1;
+    stroke: rgb(0, 0, 0);
+    fill: rgb(51 51 51);
+    font-family: Arial, sans-serif;
+    white-space: pre;
+    font-size: 18px;
+}
+
+.unselected-key ellipse {
+    stroke-width: 1;
+    stroke: rgb(0, 0, 0);
+    fill: rgb(255 255 255);
+}
+
+.unselected-key text {
+    stroke-width: 1;
+    stroke: rgb(0, 0, 0);
+    fill: rgb(51 51 51);
+    font-family: Arial, sans-serif;
+    white-space: pre;
+    font-size: 18px;
+}
