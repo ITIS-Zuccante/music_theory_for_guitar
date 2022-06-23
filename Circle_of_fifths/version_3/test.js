@@ -12,18 +12,6 @@ let harmonic_minor_circle_of_fifths = ['A', 'E', 'B', 'F#', 'C#', 'G#', 'Eb', 'B
 let melodic_minor_circle_of_fifths = ['A', 'E', 'B', 'F#', 'C#', 'G#', 'Eb', 'Bb', 'F', 'C', 'G', 'D'];
 let natural_minor_circle_of_fifths = ['A', 'E', 'B', 'F#', 'C#', 'G#', 'Eb', 'Bb', 'F', 'C', 'G', 'D'];
 
-let major_colors = [
-    "rgb(107, 190, 82)",
-    "rgb(255, 255, 255)",
-    "rgb(0, 203, 239)",
-    "rgb(255, 255, 255)",
-    "rgb(247, 231, 33)",
-    "rgb(170, 89, 190)",
-    "rgb(255, 255, 255)",
-    "rgb(239, 65, 66)",
-    "rgb(255, 255, 255)",
-    "rgb(255, 174, 33)"];
-
 export let circles = [
     { key_list: major_circle_of_fifths, formula: major_formula},
     { key_list: harmonic_major_circle_of_fifths, formula: harmonic_major_formula},
@@ -34,7 +22,7 @@ export let circles = [
 
 circles.forEach((c) => {
     c.key_list.forEach((note) => {
-        let k = Key(note, c.formula, major_colors);
+        let k = Key(note, c.formula);
         k.print();
     });
 });

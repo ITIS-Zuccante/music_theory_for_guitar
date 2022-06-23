@@ -1,4 +1,4 @@
-export function Key(root, formula, colors) {
+export function Key(root, formula) {
     const _allNotes = [
         { sharp: 'C', flat: 'C' },
         { sharp: 'C#', flat: 'Db'},
@@ -15,7 +15,14 @@ export function Key(root, formula, colors) {
     ];
     const _root = root;
     const _formula = formula;
-    const _colors = colors;
+    const _colors = [
+        "rgb(247, 231, 33)",
+        "rgb(107, 190, 82)",
+        "rgb(0, 203, 239)",
+        "rgb(0, 134, 206)",
+        "rgb(170, 89, 190)",
+        "rgb(239, 65, 66)",
+        "rgb(255, 174, 33)"];
     const maj_distances = [0, 2, 4, 5, 7, 9, 11];
 
     let enharmonicIndexOf = (note, list) => {
@@ -75,6 +82,7 @@ _matrix == [
                     if (_selectedNotes[j] != null) {
                         result[d][n] = {};
                         result[d][n].note = _selectedNotes[j];
+                        result[d][n].color = _colors[lastInterval];
                         switch (n - maj_distances[lastInterval]) {
                             case -2: 
                                 result[d][n].interval = 'bb' + (lastInterval+1);

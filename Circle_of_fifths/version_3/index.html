@@ -5,18 +5,28 @@
           Circle of fifths
         </title>
         <link rel="stylesheet" href="style.css">
+        <script src="svg-inject.min.js"></script>
     </head>
 <body>
-   <h1>Major keys</h1>
-    <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+    <h1 id="title"></h1>
+    <h2 id="current-key"></h2>
+    <h2 id="current-mode"></h2>
+    <label for="select-circles">Choose a type of keys:</label>
+    <select name="select-circles" id="select-circles">
+        <option value="0">Major</option>
+        <option value="1">Harmonic major</option>
+        <option value="2">Harmonic minor</option>
+        <option value="3">Melodic minor</option>
+        <option value="4">Natural minor</option>
+    </select>
+    <!--    
+    <img src="circle.svg" onload="SVGInject(this)" alt = "circle of fifths"/>
+    -->
+    <div class="container">
+    <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" version="1.1" id="mysvg">
         <g transform="matrix(1, 0, 0, 1, 0.662865, 12.968668)">
-            <path
-                d="M 346.176 140.569 L 388.676 151.957 L 419.788 183.069 L 431.176 225.569 L 419.788 268.069 L 388.676 299.181 L 346.176 310.569 L 303.676 299.181 L 272.564 268.069 L 261.176 225.569 L 272.564 183.069 L 303.676 151.957 Z"
-                style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255); paint-order: fill;"
-                transform="matrix(1, 0.000021, -0.000021, 1, -98.169472, 27.425514)" />
             <path id="path-2"
                 d="M 249.21 37.224 L 354.21 65.359 L 431.075 142.224 L 459.21 247.224 L 431.075 352.224 L 354.21 429.089 L 249.21 457.224 L 144.21 429.089 L 67.345 352.224 L 39.21 247.224 L 67.345 142.224 L 144.21 65.359 L 249.21 37.224 Z"
-                style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255); paint-order: fill;"
                 transform="matrix(1, 0.000021, -0.000021, 1, 0.005192, -0.005233)" />
             <g id="group-of-keys" transform="matrix(1, 0, 0, 1, -96.262512, 21.620781)">
                 <g id="g-14" class="key">
@@ -70,13 +80,8 @@
             </g>
         </g>
         <g transform="matrix(0.710594, 0, 0, 0.710594, 73.315346, 84.564476)">
-            <path
-                d="M 346.176 140.569 L 388.676 151.957 L 419.788 183.069 L 431.176 225.569 L 419.788 268.069 L 388.676 299.181 L 346.176 310.569 L 303.676 299.181 L 272.564 268.069 L 261.176 225.569 L 272.564 183.069 L 303.676 151.957 Z"
-                style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255); paint-order: fill;"
-                transform="matrix(1, 0.000021, -0.000021, 1, -98.169472, 27.425514)" />
-            <path id="path-1"
+            <path id="path-4"
                 d="M 249.21 37.224 L 354.21 65.359 L 431.075 142.224 L 459.21 247.224 L 431.075 352.224 L 354.21 429.089 L 249.21 457.224 L 144.21 429.089 L 67.345 352.224 L 39.21 247.224 L 67.345 142.224 L 144.21 65.359 L 249.21 37.224 Z"
-                style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255); paint-order: fill;"
                 transform="matrix(1, 0.000021, -0.000021, 1, 0.005192, -0.005233)" />
             <g id="g-1" transform="matrix(1, 0, 0, 1, -96.262512, 21.620781)">
                 <g id="g-2" class="degree">
@@ -101,11 +106,11 @@
                 </g>
                 <g id="g-7" class="degree">
                     <ellipse cx="451.176" cy="407.434" rx="22.2" ry="22.2" />
-                    <text x="445.0" y="412.0">6</text>
+                    <text x="447.0" y="412.0">6</text>
                 </g>
                 <g id="g-8" class="degree">
                     <ellipse cx="346.176" cy="435.569" rx="22.2" ry="22.2" />
-                    <text x="339.0" y="439.0">7</text>
+                    <text x="340.0" y="439.0">7</text>
                 </g>
                 <g id="g-9" class="degree">
                     <ellipse cx="241.176" cy="407.434" rx="22.2" ry="22.2" />
@@ -133,27 +138,27 @@
             <g id="g-26" transform="matrix(1, 0, 0, 1, -96.262512, 21.620781)">
                 <g id="g-27" class="note">
                     <ellipse cx="346.176" cy="15.569" rx="22.2" ry="22.2" />
-                    <text x="346.176" y="15.569">1</text>
+                    <text x="341.0" y="20.0">1</text>
                 </g>
                 <g id="g-28" class="note">
                     <ellipse cx="451.176" cy="43.704" rx="22.2" ry="22.2" />
-                    <text x="451.176" y="43.704">2</text>
+                    <text x="447.0" y="45.0">2</text>
                 </g>
                 <g id="g-29" class="note">
                     <ellipse cx="528.041" cy="120.569" rx="22.2" ry="22.2" />
-                    <text x="528.041" y="120.569">3</text>
+                    <text x="525.0" y="124.0">3</text>
                 </g>
                 <g id="g-30" class="note">
                     <ellipse cx="556.176" cy="225.569" rx="22.2" ry="22.2" />
-                    <text x="556.176" y="225.569">4</text>
+                    <text x="554.0" y="230.0">4</text>
                 </g>
                 <g id="g-31" class="note">
                     <ellipse cx="528.041" cy="330.569" rx="22.2" ry="22.2" />
-                    <text x="528.041" y="330.569">5</text>
+                    <text x="526.0" y="334.0">5</text>
                 </g>
                 <g id="g-32" class="note">
                     <ellipse cx="451.176" cy="407.434" rx="22.2" ry="22.2" />
-                    <text x="451.176" y="407.434">6</text>
+                    <text x="449.0" y="410.0">6</text>
                 </g>
                 <g id="g-33" class="note">
                     <ellipse cx="346.176" cy="435.569" rx="22.2" ry="22.2" />
@@ -161,23 +166,23 @@
                 </g>
                 <g id="g-34" class="note">
                     <ellipse cx="241.176" cy="407.434" rx="22.2" ry="22.2" />
-                    <text x="241.176" y="407.434">8</text>
+                    <text x="237.0" y="409.0">8</text>
                 </g>
                 <g id="g-35" class="note">
                     <ellipse cx="164.311" cy="330.569" rx="22.2" ry="22.2" />
-                    <text x="164.311" y="330.569">9</text>
+                    <text x="160.0" y="335.0">9</text>
                 </g>
                 <g id="g-36" class="note">
                     <ellipse cx="136.176" cy="225.569" rx="22.2" ry="22.2" />
-                    <text x="136.176" y="225.569">10</text>
+                    <text x="131.0" y="230.0">10</text>
                 </g>
                 <g id="g-37" class="note">
                     <ellipse cx="164.311" cy="120.569" rx="22.2" ry="22.2" />
-                    <text x="164.311" y="120.569">11</text>
+                    <text x="162.0" y="122.0">11</text>
                 </g>
                 <g id="g-38" class="note">
                     <ellipse cx="241.176" cy="43.704" rx="22.2" ry="22.2" />
-                    <text x="241.176" y="43.704">12</text>
+                    <text x="237.0" y="48.0">12</text>
                 </g>
             </g>
         </g>
@@ -187,23 +192,23 @@
                 <text x="277.282" y="172.221">2</text>
             </g>
             <g class="note-link">
-                <path d="M 166.926 254.279 L 243.955 175.955" />
+                <path d="M 319.0 215.425 L 259.0 174.0" />
                 <text x="308.148" y="206.183">3</text>
             </g>
             <g class="note-link">
-                <path d="M 178.468 298.327 L 245.623 178.048" />
+                <path d="M 332.716 255.486 L 255.525 175.724" />
                 <text x="321.421" y="242.238">4</text>
             </g>
             <g class="note-link">
-                <path d="M 332.716 255.486 L 255.525 175.724" />
+                <path d="M 323.478 296.825 L 253.36 178.063" />
                 <text x="318.793" y="287.182">5</text>
             </g>
             <g class="note-link">
-                <path d="M 323.478 296.825 L 253.36 178.063" />
+                <path d="M 291.655 329.536 L 252.012 178.739" />
                 <text x="290.312" y="321.446">6</text>
             </g>
             <g class="note-link">
-                <path d="M 291.655 329.536 L 252.012 178.739" />
+                <path d="M 250.099 339.759 L 249.766 179.716" />
                 <text x="253.368" y="331.873">7</text>
             </g>
             <g class="note-link">
@@ -211,11 +216,11 @@
                 <text x="212.056" y="325.888">8</text>
             </g>
             <g class="note-link">
-                <path d="M 250.099 339.759 L 249.766 179.716" />
+                <path d="M 178.468 298.327 L 245.623 178.048" />
                 <text x="182.894" y="300.745">9</text>
             </g>
             <g class="note-link">
-                <path d="M 320.247 215.425 L 257.14 173.161" />
+                <path d="M 166.926 254.279 L 243.955 175.955" />
                 <text x="171.894" y="257.745">10</text>
             </g>
             <g class="note-link">
@@ -228,6 +233,9 @@
             </g>
         </g>
     </svg>
+    </div>
+    
+    
     <script type="module" src="main.js"></script>
 </body>
 </html>
