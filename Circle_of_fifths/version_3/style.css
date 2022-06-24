@@ -14,9 +14,15 @@ notes are in the inner hexagon. Notes are the components of chords
     fill: rgb(255 255 255);
 }
 
-.selected ellipse {
+.selected-key ellipse {
     stroke-width: 1;
-    fill: rgb(247, 231, 33);
+    fill: rgb(240, 220, 220);
+    stroke: rgb(247, 231, 33);
+}
+
+.selected-mode ellipse {
+    stroke-width: 1;
+    fill: rgb(220, 200, 200);
     stroke: rgb(247, 231, 33);
 }
 

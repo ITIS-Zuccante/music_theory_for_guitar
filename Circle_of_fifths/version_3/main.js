@@ -79,12 +79,16 @@ let currentCircleIndex = null;
     computeKeys();
     currentKeyIndex = 0;
     currentModeIndex = 0;
+    paintComponents();
+})();
+
+function paintComponents() {
     writeTitle();
     writeKeys(allKeys, circles[currentCircleIndex].key_list);
     writeModes(allModes, allKeys[currentKeyIndex].key);
     writeNotes(allNotes, allNoteLinks, allKeys[currentKeyIndex].key, currentModeIndex);
     logCurrentIndices();
-})();
+}
 
 function computeKeys() {
     let min = Math.min(circles[currentCircleIndex].key_list.length, allKeys.length, allModes.length, allNotes.length);
@@ -179,13 +183,10 @@ function writeNotes(noteList, noteLinkList, key, mode) {
 allKeys.forEach((el) => {
     el.text.addEventListener('click',
         (event) => {
-            allKeys[currentKeyIndex].ellipse.parentElement.classList.remove('selected');
+            allKeys[currentKeyIndex].ellipse.parentElement.classList.remove('selected-key');
             currentKeyIndex = el.index;
-            writeTitle(currentCircleIndex, currentModeIndex);
-            writeModes(allModes, allKeys[currentKeyIndex].key);
-            writeNotes(allNotes, allNoteLinks, allKeys[currentKeyIndex].key, currentModeIndex);
-            event.target.parentElement.classList.add("selected");
-            logCurrentIndices();
+            event.target.parentElement.classList.add("selected-key");
+            paintComponents();
         }
     );
 });
@@ -193,13 +194,10 @@ allKeys.forEach((el) => {
 allModes.forEach((el) => { 
     el.text.addEventListener('click',
         (event) => {
-            allModes[currentModeIndex].ellipse.parentElement.classList.remove('selected');
+            allModes[currentModeIndex].ellipse.parentElement.classList.remove('selected-mode');
             currentModeIndex = el.index;
-            console.log(`clicked ${el.text.innerHTML}`);
-            writeTitle(currentCircleIndex, currentModeIndex);
-            writeNotes(allNotes, allNoteLinks, allKeys[currentKeyIndex].key, currentModeIndex);
-            event.target.parentElement.classList.add("selected");
-            logCurrentIndices();
+            event.target.parentElement.classList.add("selected-mode");
+            paintComponents();
         }
     );
 });
@@ -209,9 +207,6 @@ document.getElementById('select-circles').addEventListener('change',
     (event) => {
         setCurrentCircleIndex();
         computeKeys();
-        writeTitle(currentCircleIndex, currentModeIndex);
-        writeModes(allModes, allKeys[currentKeyIndex].key);
-        writeNotes(allNotes, allNoteLinks, allKeys[currentKeyIndex].key, currentModeIndex);
-        logCurrentIndices();
+        paintComponents();
     }
 );
