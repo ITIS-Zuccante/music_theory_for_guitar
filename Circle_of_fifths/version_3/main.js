@@ -3,7 +3,20 @@ import { Key } from "./key.js";
 const major_formula = [true,false,true,false,true,true,false,true,false,true,false,true];
 const natural_minor_formula = [true,false,true,true,false,true,false,true,true,false,true,false];
 const harmonic_minor_formula = [true,false,true,true,false,true,false,true,true,false,false,true];
-const harmonic_major_formula = [true,false,true,false,true,true,false,true,true,false,false,true];
+const harmonic_major_formula = [
+    true,// 1
+    false,
+    true, //2
+    false,
+    true, //3
+    true, //4
+    false,
+    true, //5
+    true, //b6
+    false,
+    false,
+    true // 7
+];
 const melodic_minor_formula = [true,false,true,true,false,true,false,true,false,true,false,true];
 let major_circle_of_fifths = ['C', 'G', 'D', 'A', 'E', 'B', 'F#', 'Db', 'Ab', 'Eb', 'Bb', 'F'];
 let harmonic_major_circle_of_fifths = ['C', 'G', 'D', 'A', 'E', 'B', 'F#', 'F', 'Ab', 'Eb', 'Bb', 'F'];
@@ -57,18 +70,27 @@ stroke-width: 2;
 fill: rgb(247 231 33);
 */
 
-
-let currentCircle = null;
-let currentMode = null;
-let currentKey = null;
+let currentModeIndex = null
+let currentKeyIndex = null;
 let currentCircleIndex = null;
 
 (function init(){
     setCurrentCircleIndex();
-    let min = Math.min(currentCircle.key_list.length, allKeys.length, allModes.length, allNotes.length);
+    computeKeys();
+    currentKeyIndex = 0;
+    currentModeIndex = 0;
+    writeTitle();
+    writeKeys(allKeys, circles[currentCircleIndex].key_list);
+    writeModes(allModes, allKeys[currentKeyIndex].key);
+    writeNotes(allNotes, allNoteLinks, allKeys[currentKeyIndex].key, currentModeIndex);
+    logCurrentIndices();
+})();
+
+function computeKeys() {
+    let min = Math.min(circles[currentCircleIndex].key_list.length, allKeys.length, allModes.length, allNotes.length);
     for (let i = 0; i < min; i++) {
         allModes[i].index = i;
-        allKeys[i].key = Key(currentCircle.key_list[i], currentCircle.formula);
+        allKeys[i].key = Key(circles[currentCircleIndex].key_list[i], circles[currentCircleIndex].formula);
         console.log(allKeys[i].key.root);
         allKeys[i].index = i;
         allNotes[i].index = i;
@@ -76,42 +98,42 @@ let currentCircleIndex = null;
             allNoteLinks[i].index = i;
         }
     }
-    currentKey = allKeys[0];
-    currentMode = allModes[0];
-    writeTitle(currentCircleIndex, currentMode.index);
-    writeKeys(allKeys, currentCircle.key_list);
-    writeModes(allModes, currentKey.key);
-    writeNotes(allNotes, allNoteLinks, currentKey.key, currentMode.index);
-})();
+}
+
+function logCurrentIndices() {
+    console.log(`currentCircleIndex ${currentCircleIndex}`);
+    console.log(`currentKeyIndex ${currentKeyIndex}`);
+    console.log(`currentModeIndex ${currentModeIndex}`);
+    console.log(allKeys[currentKeyIndex].key.matrix[currentModeIndex]);
+}
+
 
 function setCurrentCircleIndex() {
     let select = document.getElementById('select-circles');
     let value = select.options[select.selectedIndex].value;
     currentCircleIndex = parseInt(value);
-    console.log(`currentCircleIndex ${currentCircleIndex}`);
-    currentCircle = circles[currentCircleIndex];
 }
 
-function writeTitle(circleIndex, modeIndex) {
+function writeTitle() {
     let title = document.getElementById("title");
     let currentKeyName = document.getElementById("current-key");
     let currentModeName = document.getElementById("current-mode");
-    currentModeName.innerHTML = "Mode " + currentKey.key.matrix[modeIndex][0].note;
-    switch (circleIndex){
+    currentModeName.innerHTML = "Mode " + allKeys[currentKeyIndex].key.matrix[currentModeIndex][0].note;
+    switch (currentCircleIndex){
         case 0: title.innerHTML = "Circle of fifths: major keys";
-            currentKeyName.innerHTML = currentKey.key.root + " major";
+            currentKeyName.innerHTML = allKeys[currentKeyIndex].key.root + " major";
             break;
         case 1: title.innerHTML = "Circle of fifths: harmonic major keys";
-            currentKeyName.innerHTML = currentKey.key.root + " harmonic major";
+            currentKeyName.innerHTML = allKeys[currentKeyIndex].key.root + " harmonic major";
             break; 
         case 2: title.innerHTML = "Circle of fifths: harmonic minor keys";
-            currentKeyName.innerHTML = currentKey.key.root + " harmonic minor";
+            currentKeyName.innerHTML = allKeys[currentKeyIndex].key.root + " harmonic minor";
             break; 
         case 3: title.innerHTML = "Circle of fifths: melodic minor keys";
-            currentKeyName.innerHTML = currentKey.key.root + " melodic minor";
+            currentKeyName.innerHTML = allKeys[currentKeyIndex].key.root + " melodic minor";
             break; 
         case 4: title.innerHTML = "Circle of fifths: natural minor keys";
-            currentKeyName.innerHTML = currentKey.key.root + " natural minor";
+            currentKeyName.innerHTML = allKeys[currentKeyIndex].key.root + " natural minor";
     }
 }
 
@@ -157,13 +179,13 @@ function writeNotes(noteList, noteLinkList, key, mode) {
 allKeys.forEach((el) => {
     el.text.addEventListener('click',
         (event) => {
-            currentKey.ellipse.parentElement.classList.remove('selected');
-            currentKey = el;
-            console.log(`clicked ${el.text.innerHTML}`);
-            writeTitle(currentCircleIndex, currentMode.index);
-            writeModes(allModes, currentKey.key);
-            writeNotes(allNotes, allNoteLinks, currentKey.key, currentMode.index);
+            allKeys[currentKeyIndex].ellipse.parentElement.classList.remove('selected');
+            currentKeyIndex = el.index;
+            writeTitle(currentCircleIndex, currentModeIndex);
+            writeModes(allModes, allKeys[currentKeyIndex].key);
+            writeNotes(allNotes, allNoteLinks, allKeys[currentKeyIndex].key, currentModeIndex);
             event.target.parentElement.classList.add("selected");
+            logCurrentIndices();
         }
     );
 });
@@ -171,15 +193,25 @@ allKeys.forEach((el) => {
 allModes.forEach((el) => { 
     el.text.addEventListener('click',
         (event) => {
-            currentMode.ellipse.parentElement.classList.remove('selected');
-            currentMode = el;
+            allModes[currentModeIndex].ellipse.parentElement.classList.remove('selected');
+            currentModeIndex = el.index;
             console.log(`clicked ${el.text.innerHTML}`);
-            writeTitle(currentCircleIndex, currentMode.index);
-            writeNotes(allNotes, allNoteLinks, currentKey.key, currentMode.index);
+            writeTitle(currentCircleIndex, currentModeIndex);
+            writeNotes(allNotes, allNoteLinks, allKeys[currentKeyIndex].key, currentModeIndex);
             event.target.parentElement.classList.add("selected");
+            logCurrentIndices();
         }
     );
 });
 
 
-document.getElementById('select-circles').addEventListener('change', setCurrentCircleIndex);
+document.getElementById('select-circles').addEventListener('change', 
+    (event) => {
+        setCurrentCircleIndex();
+        computeKeys();
+        writeTitle(currentCircleIndex, currentModeIndex);
+        writeModes(allModes, allKeys[currentKeyIndex].key);
+        writeNotes(allNotes, allNoteLinks, allKeys[currentKeyIndex].key, currentModeIndex);
+        logCurrentIndices();
+    }
+);
