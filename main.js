@@ -1,4 +1,13 @@
 import { Key } from "./key.js";
+import mustache from "https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.2.0/mustache.min.js"
+
+let template = await fetch('image.svg')
+    .then(response => response.text())
+    .then(response => {
+        mustache.parse(response);
+        let output = mustache.render(response, {});
+        document.querySelector('div.container').innerHTML = output;
+    }).catch(error => console.log('Unable to get template data: ', error.message));
 
 const major_formula = [true,false,true,false,true,true,false,true,false,true,false,true];
 const natural_minor_formula = [true,false,true,true,false,true,false,true,true,false,true,false];
@@ -178,6 +187,17 @@ function writeNotes(noteList, noteLinkList, key, mode) {
             noteLinkList[i].text.style.visibility = 'hidden';
         }
     }
+    (async() => {
+        template = await fetch('mode_template.svg')
+        .then(response => response.text())
+        .then(response => {
+            mustache.parse(response);
+            let output = mustache.render(response, {});
+            for (let i = 1; i <= 7; i++) {
+                document.querySelector(`div.container_mode_${i}`).innerHTML = output;
+            }
+        }).catch(error => console.log('Unable to get template data: ', error.message));
+    })();
 }
 
 allKeys.forEach((el) => {

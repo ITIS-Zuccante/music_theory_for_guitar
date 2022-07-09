@@ -26,3 +26,11 @@ circles.forEach((c) => {
         k.print();
     });
 });
+
+(function init() {
+    const template = fetch('image.svg').then(response => response.text());
+    Promise.all(template).then(result => {
+        let output = Mustache.render(result, {p: null});
+        document.querySelector('div.container').innerHTML = output;
+    }).catch(error => console.log('Unable to get template data: ', error.message));
+})();

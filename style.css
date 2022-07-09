@@ -40,6 +40,11 @@ notes are in the inner hexagon. Notes are the components of chords
 :root {
     --factor: 1;
 }
+
+.container_mode {
+    display: inline-block;
+}
+
 svg {
     transform: scale(var(--factor));
     -webkit-transform: scale(var(--factor));
