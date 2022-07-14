@@ -1,5 +1,6 @@
 import { Key } from "./key.js";
-import mustache from "https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.2.0/mustache.min.js"
+//import mustache from "https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.2.0/mustache.min.js"
+import { mustache } from "./mustache.js"
 
 let template = await fetch('image.svg')
     .then(response => response.text())
