@@ -2,7 +2,20 @@ import { Key } from "./key.js";
 
 const major_formula = [true,false,true,false,true,true,false,true,false,true,false,true];
 const natural_minor_formula = [true,false,true,true,false,true,false,true,true,false,true,false];
-const harmonic_minor_formula = [true,false,true,true,false,true,false,true,true,false,false,true];
+const harmonic_minor_formula = [
+    true,// 1
+    false,
+    true, //2
+    true, //b3
+    false,
+    true, //4
+    false,
+    true, //5
+    true, //b6
+    false,
+    false,
+    true // 7
+];
 const harmonic_major_formula = [
     true,// 1
     false,
